@@ -76,6 +76,7 @@ ButtonStyle AppButtonStyle(){
     elevation: 1,
     padding: EdgeInsets.zero,
     backgroundColor: Colors.transparent,
+    foregroundColor: colorWhite,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
   );
 }
@@ -88,7 +89,7 @@ TextStyle ButtonTextStyle(){
   );
 }
 
-Ink SuccessButtonChild(String ButtonText){
+Ink SuccessButtonChild(ButtonText){
   return Ink(
     decoration: BoxDecoration(
       color: colorGreen,
