@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../style/style.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,11 +15,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Task Manager"),
-      ),
-      body: Center(
-        child: Text("Splash Screen"),
+      body: Stack(
+        children: [
+          ScreenBackground(context),
+          Container(
+            padding: EdgeInsets.all(30),
+            child: Center(
+              child: SvgPicture.asset(
+                'assets/images/logo.svg',
+                width: 100,
+                height: 100,
+                alignment: Alignment.center,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
