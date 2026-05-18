@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 const colorRed = Color.fromRGBO(231,28,36,1);
 const colorDark = Color.fromRGBO(131,28,32,1);
@@ -12,6 +13,20 @@ const colorDarkBlue = Color.fromRGBO(44,62,80,1.0);
 const colorLightGray = Color.fromRGBO(135, 142, 150, 1.0);
 const colorLight = Color.fromRGBO(211,211,211,1.0);
 
+MaterialPinTheme AppOTPStyle() {
+  return MaterialPinTheme(
+    borderColor: colorLight,
+    fillColor: colorWhite,
+    focusedBorderColor: colorGreen,
+    focusedFillColor: colorGreen,
+    filledBorderColor: colorWhite,
+    filledFillColor: colorWhite,
+    shape: MaterialPinShape.outlined,
+    borderRadius: BorderRadius.circular(5),
+    cellSize: const Size(81, 60),
+    borderWidth: 0.5,
+  );
+}
 
 TextStyle Head1Text(textColor){
   return TextStyle(
