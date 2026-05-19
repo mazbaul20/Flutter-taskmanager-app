@@ -48,7 +48,9 @@ class _registrationScreenState extends State<registrationScreen> {
                   children: [
                     Text("Already have an account?", style: Head6Text(colorDarkBlue),),
                     SizedBox(width: 1,),
-                    TextButton(onPressed: (){}, child: Text("Login", style: Head6Text(colorGreen),)),
+                    TextButton(onPressed: (){
+                      Navigator.pushNamed(context, "/login");
+                    }, child: Text("Login", style: Head6Text(colorGreen),)),
                   ],
                 ),
               ],
