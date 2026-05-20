@@ -26,11 +26,11 @@ class _pinVerificationScreenState extends State<pinVerificationScreen> {
               children: [
                 Text('Pin Verification', style: Head1Text(colorDarkBlue),),
                 SizedBox(height: 10,),
-                Text('A 4 digit verification pin will send to your email address', style: Head6Text(colorDarkBlue),),
+                Text('A 6 digit verification pin will send to your email address', style: Head6Text(colorDarkBlue),),
                 SizedBox(height: 20,),
                 Center(
                   child: MaterialPinField(
-                    length: 4,
+                    length: 6,
                     theme: AppOTPStyle(),
                     onCompleted: (pin) {
                       print('Completed: $pin');

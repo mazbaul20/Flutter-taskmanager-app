@@ -23,7 +23,7 @@ MaterialPinTheme AppOTPStyle() {
     filledFillColor: colorWhite,
     shape: MaterialPinShape.outlined,
     borderRadius: BorderRadius.circular(5),
-    cellSize: const Size(81, 60),
+    cellSize: const Size(51, 48),
     borderWidth: 0.5,
   );
 }
