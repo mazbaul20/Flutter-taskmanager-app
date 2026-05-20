@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../api/apiClient.dart';
 import '../../style/style.dart';
+import '../../utility/utility.dart';
 
 class pinVerificationScreen extends StatefulWidget {
   const pinVerificationScreen({super.key});
@@ -12,6 +14,31 @@ class pinVerificationScreen extends StatefulWidget {
 }
 
 class _pinVerificationScreenState extends State<pinVerificationScreen> {
+  Map<String, String> FormValues = {"otp":""};
+  bool isLoading = false;
+
+  InputOnChange(MapKey, TextValue){
+    setState(() {
+      FormValues.update(MapKey, (value)=>TextValue);
+    });
+  }
+
+  FormOnSubmit() async {
+    if(FormValues['otp']!.length==0){
+      ErrorToast("PIN required");
+    }else{
+      setState(() {isLoading = true;});
+      String? email = await GetUserData('EmailVerification');
+      bool res = await VerifyOTPRequest(email, FormValues['otp']);
+
+      if(res==true){
+        Navigator.pushNamed(context, "/setPassword");
+      }else{
+        setState(() {isLoading = false;});
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,15 +62,17 @@ class _pinVerificationScreenState extends State<pinVerificationScreen> {
                     onCompleted: (pin) {
                       print('Completed: $pin');
                     },
-                    onChanged: (value) {
-                      print('Changed: $value');
+                    onChanged: (TextValue) {
+                      InputOnChange("otp",TextValue);
                     },
                   ),
                 ),
                 SizedBox(height: 20,),
                 Container(
                   child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      FormOnSubmit();
+                    },
                     child: SuccessButtonChild("Verify"),
                     style: AppButtonStyle(),
                   ),
