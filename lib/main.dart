@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget{
       title: "Task Manager",
       // name route or navigation
       initialRoute: FirstRoute,
+      // initialRoute: "/setPassword",
       routes: {
         '/': (context) => SplashScreen(),
         '/login': (context) => loginScreen(),

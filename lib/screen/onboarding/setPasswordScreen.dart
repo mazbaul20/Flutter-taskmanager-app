@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../api/apiClient.dart';
 import '../../style/style.dart';
+import '../../utility/utility.dart';
 
 class setPasswordScreen extends StatefulWidget {
   const setPasswordScreen({super.key});
@@ -10,6 +12,44 @@ class setPasswordScreen extends StatefulWidget {
 }
 
 class _setPasswordScreenState extends State<setPasswordScreen> {
+  Map<String, String> FormValues = {"email":"","OTP":"","password":"", "cpassword":""};
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    callStoreData();
+  }
+
+  Future<void> callStoreData() async {
+    String? email = await GetUserData('EmailVerification') ?? "";
+    String? otp = await GetUserData('OTPVerification') ?? "";
+    InputOnChange('email', email);
+    InputOnChange('OTP', otp);
+  }
+
+  InputOnChange(MapKey, TextValue){
+    setState(() {
+      FormValues.update(MapKey, (value)=>TextValue);
+    });
+  }
+
+  FormOnSubmit() async {
+    if(FormValues['password']!.length==0){
+      ErrorToast("Password required");
+    }else if(FormValues['password']!=FormValues['cpassword']){
+      ErrorToast("Confirm Password does not match");
+    }else{
+        setState(() {isLoading = true;});
+        bool res = await SetPasswordRequest(FormValues);
+        if(res==true){
+          Navigator.pushNamedAndRemoveUntil(context, "/login", (route)=>false);
+        }else{
+          setState(() {isLoading = false;});
+        }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,13 +66,23 @@ class _setPasswordScreenState extends State<setPasswordScreen> {
                 SizedBox(height: 1,),
                 Text('Minimum length password 8 characters with letter and combination', style: Head6Text(colorDarkBlue),),
                 SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Password"),),
+                TextFormField(decoration: AppInputDecoration("Password"),
+                  onChanged: (TextValue){
+                    InputOnChange("password",TextValue);
+                  },
+                ),
                 SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Confirm Password"),),
+                TextFormField(decoration: AppInputDecoration("Confirm Password"),
+                  onChanged: (TextValue){
+                    InputOnChange("cpassword",TextValue);
+                  },
+                ),
                 SizedBox(height: 20,),
                 Container(
                   child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      FormOnSubmit();
+                    },
                     child: SuccessButtonChild("Confirm"),
                     style: AppButtonStyle(),
                   ),
