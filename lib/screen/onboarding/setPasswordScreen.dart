@@ -14,11 +14,13 @@ class setPasswordScreen extends StatefulWidget {
 class _setPasswordScreenState extends State<setPasswordScreen> {
   Map<String, String> FormValues = {"email":"","OTP":"","password":"", "cpassword":""};
   bool isLoading = false;
+  bool isPasswordVisible = true;
+  bool isConfirmPasswordVisible = true;
 
   @override
   void initState() {
-    super.initState();
     callStoreData();
+    super.initState();
   }
 
   Future<void> callStoreData() async {
@@ -43,6 +45,7 @@ class _setPasswordScreenState extends State<setPasswordScreen> {
         setState(() {isLoading = true;});
         bool res = await SetPasswordRequest(FormValues);
         if(res==true){
+          await ClearVerificationData();
           Navigator.pushNamedAndRemoveUntil(context, "/login", (route)=>false);
         }else{
           setState(() {isLoading = false;});
@@ -66,16 +69,30 @@ class _setPasswordScreenState extends State<setPasswordScreen> {
                 SizedBox(height: 1,),
                 Text('Minimum length password 8 characters with letter and combination', style: Head6Text(colorDarkBlue),),
                 SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Password"),
+                TextFormField(decoration: AppInputDecoration("Password").copyWith(
+                  suffixIcon: IconButton(onPressed: (){
+                    setState(() {
+                      isPasswordVisible = !isPasswordVisible;
+                    });
+                  }, icon: Icon(isPasswordVisible ? Icons.visibility_off : Icons.visibility)),
+                ),
                   onChanged: (TextValue){
                     InputOnChange("password",TextValue);
                   },
+                  obscureText: isPasswordVisible,
                 ),
                 SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Confirm Password"),
+                TextFormField(decoration: AppInputDecoration("Confirm Password").copyWith(
+                  suffixIcon: IconButton(onPressed: (){
+                    setState(() {
+                      isConfirmPasswordVisible = !isConfirmPasswordVisible;
+                    });
+                  }, icon: Icon(isConfirmPasswordVisible ? Icons.visibility_off : Icons.visibility)),
+                ),
                   onChanged: (TextValue){
                     InputOnChange("cpassword",TextValue);
                   },
+                  obscureText: isConfirmPasswordVisible,
                 ),
                 SizedBox(height: 20,),
                 Container(

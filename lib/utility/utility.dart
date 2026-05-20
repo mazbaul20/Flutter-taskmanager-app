@@ -20,6 +20,12 @@ Future<void> WriteOTPVerification(otp) async {
   await prefs.setString('OTPVerification', otp);
 }
 
+Future<void> ClearVerificationData() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove('EmailVerification');
+  await prefs.remove('OTPVerification');
+}
+
 Future<String?> GetUserData(Key) async {
   final prefs = await SharedPreferences.getInstance();
   String? mydata = prefs.getString(Key);
