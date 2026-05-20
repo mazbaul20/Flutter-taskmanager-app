@@ -54,6 +54,7 @@ Future<bool> VerifyEmailRequest(Email) async {
   var ResultBody = json.decode(response.body);
 
   if(ResultCode==200 && ResultBody['status']=="success"){
+    await WriteEmailVerification(Email);
     SuccessToast("Request Success");
     return true;
   }else{
@@ -70,6 +71,7 @@ Future<bool> VerifyOTPRequest(Email, OTP) async {
   var ResultBody = json.decode(response.body);
 
   if(ResultCode==200 && ResultBody['status']=="success"){
+    await WriteOTPVerification(OTP);
     SuccessToast("Request Success");
     return true;
   }else{

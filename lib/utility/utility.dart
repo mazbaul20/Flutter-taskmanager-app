@@ -10,6 +10,16 @@ Future<void> StoreUserData(UserData) async {
   await prefs.setString('photo', UserData['data']['photo']??"");
 }
 
+Future<void> WriteEmailVerification(email) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('EmailVerification', email);
+}
+
+Future<void> WriteOTPVerification(otp) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('OTPVerification', otp);
+}
+
 Future<String?> GetUserData(Key) async {
   final prefs = await SharedPreferences.getInstance();
   String? mydata = prefs.getString(Key);
