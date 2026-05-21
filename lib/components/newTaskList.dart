@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../utility/utility.dart';
+import '../utility/utility.dart';
 
-class newTaskListScreen extends StatefulWidget {
-  const newTaskListScreen({super.key});
+class newTaskList extends StatefulWidget {
+  const newTaskList({super.key});
 
   @override
-  State<newTaskListScreen> createState() => _newTaskListScreenState();
+  State<newTaskList> createState() => _newTaskListState();
 }
 
-class _newTaskListScreenState extends State<newTaskListScreen> {
+class _newTaskListState extends State<newTaskList> {
   String email = "";
 
   @override
