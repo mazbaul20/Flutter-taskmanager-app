@@ -10,6 +10,8 @@ class progressTaskList extends StatefulWidget {
 class _progressTaskListState extends State<progressTaskList> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: Text("Progress"),
+    );;
   }
 }

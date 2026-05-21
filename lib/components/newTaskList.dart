@@ -28,10 +28,8 @@ class _newTaskListState extends State<newTaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("New Task List"),
-      ),
-    );
+    return Center(
+      child: Text("New"),
+    );;
   }
 }
