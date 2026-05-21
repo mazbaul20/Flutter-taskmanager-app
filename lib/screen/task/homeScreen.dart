@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/appBottomNav.dart';
+import '../../components/cancelTaskList.dart';
+import '../../components/completedTaskList.dart';
+import '../../components/newTaskList.dart';
+import '../../components/progressTaskList.dart';
 
 class homeScreen extends StatefulWidget {
   const homeScreen({super.key});
@@ -11,14 +15,20 @@ class homeScreen extends StatefulWidget {
 }
 
 class _homeScreenState extends State<homeScreen> {
-  int bottomTabIndex = 0;
+  int TabIndex = 0;
 
   onItemTapped(int index) {
     setState(() {
-      bottomTabIndex = index;
+      TabIndex = index;
     });
   }
 
+  final widgetOptions = [
+    newTaskList(),
+    progressTaskList(),
+    completedTaskList(),
+    cancelTaskList(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +36,8 @@ class _homeScreenState extends State<homeScreen> {
       appBar: AppBar(
         title: Text("Home"),
       ),
-      body: Center(),
-      bottomNavigationBar: appBottomNav(bottomTabIndex,onItemTapped),
+      body: widgetOptions.elementAt(TabIndex),
+      bottomNavigationBar: appBottomNav(TabIndex,onItemTapped),
     );
   }
 }
