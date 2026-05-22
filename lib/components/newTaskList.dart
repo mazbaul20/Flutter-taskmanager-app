@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:taskmanager/api/apiClient.dart';
 
 import '../utility/utility.dart';
 
@@ -11,18 +12,20 @@ class newTaskList extends StatefulWidget {
 }
 
 class _newTaskListState extends State<newTaskList> {
-  String email = "";
+  List taskList = [];
+  bool isLoading = true;
 
   @override
   void initState() {
-    CallUserData();
+    CallData();
     super.initState();
   }
 
-  CallUserData() async {
-    String? e = await GetUserData("email");
+  CallData() async {
+    var data = await TaskListRequest("New");
     setState(() {
-      email = e!;
+      isLoading = false;
+      taskList = data;
     });
   }
 
