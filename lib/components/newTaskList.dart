@@ -33,6 +33,6 @@ class _newTaskListState extends State<newTaskList> {
   Widget build(BuildContext context) {
     return Center(
       child: Text("New"),
-    );;
+    );
   }
 }
