@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taskmanager/api/apiClient.dart';
 
 import '../utility/utility.dart';
+import 'TaskList.dart';
 
 class newTaskList extends StatefulWidget {
   const newTaskList({super.key});
@@ -31,6 +32,8 @@ class _newTaskListState extends State<newTaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return isLoading ? (Center(child: CircularProgressIndicator(),)) : (Center(child: Text("New"),));
+    return isLoading
+        ? (Center(child: CircularProgressIndicator()))
+        : (TaskList(taskList));
   }
 }

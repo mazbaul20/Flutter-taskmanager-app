@@ -13,6 +13,16 @@ const colorDarkBlue = Color.fromRGBO(44,62,80,1.0);
 const colorLightGray = Color.fromRGBO(135, 142, 150, 1.0);
 const colorLight = Color.fromRGBO(211,211,211,1.0);
 
+SizedBox ItemSizedBox(child){
+  return SizedBox(
+      width: double.infinity,
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: child,
+      ),
+  );
+}
+
 MaterialPinTheme AppOTPStyle() {
   return MaterialPinTheme(
     borderColor: colorLight,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../api/apiClient.dart';
+import 'TaskList.dart';
 
 class cancelTaskList extends StatefulWidget {
   const cancelTaskList({super.key});
@@ -30,8 +31,8 @@ class _cancelTaskListState extends State<cancelTaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return isLoading ? (Center(child: CircularProgressIndicator(),)) : (Center(child: Text("Cancelled"),));
+    return isLoading
+        ? (Center(child: CircularProgressIndicator()))
+        : (TaskList(taskList));
   }
 }
-
-

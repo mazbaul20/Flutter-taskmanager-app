@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../api/apiClient.dart';
+import 'TaskList.dart';
 
 class completedTaskList extends StatefulWidget {
   const completedTaskList({super.key});
@@ -32,6 +33,6 @@ class _completedTaskListState extends State<completedTaskList> {
   Widget build(BuildContext context) {
     return isLoading
         ? (Center(child: CircularProgressIndicator()))
-        : (Center(child: Text("Completed")));
+        : (TaskList(taskList));
   }
 }
