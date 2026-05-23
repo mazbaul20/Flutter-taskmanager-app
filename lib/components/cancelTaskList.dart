@@ -33,6 +33,11 @@ class _cancelTaskListState extends State<cancelTaskList> {
   Widget build(BuildContext context) {
     return isLoading
         ? (Center(child: CircularProgressIndicator()))
-        : (TaskList(taskList));
+        : (RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: TaskList(taskList),
+          ));
   }
 }

@@ -34,6 +34,11 @@ class _newTaskListState extends State<newTaskList> {
   Widget build(BuildContext context) {
     return isLoading
         ? (Center(child: CircularProgressIndicator()))
-        : (TaskList(taskList));
+        : (RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: TaskList(taskList),
+          ));
   }
 }
