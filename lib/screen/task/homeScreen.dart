@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../components/TaskAppBar.dart';
 import '../../components/appBottomNav.dart';
 import '../../components/cancelTaskList.dart';
 import '../../components/completedTaskList.dart';
@@ -33,9 +34,7 @@ class _homeScreenState extends State<homeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
-      ),
+      appBar: TaskAppBar(),
       body: widgetOptions.elementAt(TabIndex),
       bottomNavigationBar: appBottomNav(TabIndex,onItemTapped),
     );

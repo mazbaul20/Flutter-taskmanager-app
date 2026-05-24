@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> StoreUserData(UserData) async {
@@ -30,4 +31,10 @@ Future<String?> GetUserData(Key) async {
   final prefs = await SharedPreferences.getInstance();
   String? mydata = prefs.getString(Key);
   return mydata;
+}
+
+ShowBase64Image(Base64String){
+  UriData? data = Uri.parse(Base64String).data;
+  Uint8List MyImage = data!.contentAsBytes();
+  return MyImage;
 }
