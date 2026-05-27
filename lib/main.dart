@@ -5,7 +5,7 @@ import 'package:taskmanager/screen/onboarding/loginScreen.dart';
 import 'package:taskmanager/screen/onboarding/pinVerificationScreen.dart';
 import 'package:taskmanager/screen/onboarding/registrationScreen.dart';
 import 'package:taskmanager/screen/onboarding/setPasswordScreen.dart';
-import 'package:taskmanager/screen/onboarding/splashScreen.dart';
+// import 'package:taskmanager/screen/onboarding/splashScreen.dart';
 import 'package:taskmanager/screen/task/homeScreen.dart';
 import 'package:taskmanager/utility/utility.dart';
 

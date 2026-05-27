@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:taskmanager/api/apiClient.dart';
 
-import '../utility/utility.dart';
 import 'TaskList.dart';
 
 class newTaskList extends StatefulWidget {
