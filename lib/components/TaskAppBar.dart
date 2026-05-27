@@ -3,7 +3,7 @@ import 'package:taskmanager/style/style.dart';
 
 import '../utility/utility.dart';
 
-AppBar TaskAppBar(){
+AppBar TaskAppBar(context){
   return AppBar(
     backgroundColor: colorGreen,
     flexibleSpace: Container(
@@ -32,7 +32,10 @@ AppBar TaskAppBar(){
           onPressed: (){},
           icon: Icon(Icons.add_circle_outline)),
       IconButton(
-          onPressed: (){},
+          onPressed: () async {
+            await RemoveToken();
+            Navigator.pushNamedAndRemoveUntil(context, "/login", (route)=>false);
+          },
           icon: Icon(Icons.output)
       ),
     ],

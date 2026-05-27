@@ -27,6 +27,12 @@ Future<void> ClearVerificationData() async {
   await prefs.remove('OTPVerification');
 }
 
+Future<bool> RemoveToken() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove('token');
+  return true;
+}
+
 Future<String?> GetUserData(Key) async {
   final prefs = await SharedPreferences.getInstance();
   String? mydata = prefs.getString(Key);
