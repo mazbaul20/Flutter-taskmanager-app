@@ -65,6 +65,15 @@ TextStyle Head7Text(textColor){
   );
 }
 
+TextStyle Head9Text(textColor){
+  return TextStyle(
+    color: textColor,
+    fontSize: 11,
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w300,
+  );
+}
+
 InputDecoration AppInputDecoration(label){
   return InputDecoration(
     focusedBorder: const OutlineInputBorder(
@@ -115,6 +124,14 @@ ButtonStyle AppButtonStyle(){
   );
 }
 
+ButtonStyle AppStatusButtonStyle(color){
+  return ElevatedButton.styleFrom(
+    elevation: 1,
+    padding: EdgeInsets.zero,
+    backgroundColor: color,
+  );
+}
+
 TextStyle ButtonTextStyle(){
   return TextStyle(
     fontSize: 14,
@@ -158,5 +175,18 @@ void ErrorToast(msg){
       backgroundColor: colorRed,
       textColor: colorWhite,
       fontSize: 16.0
+  );
+}
+
+StatusChild(statusText, statusColor){
+  return Container(
+    alignment: Alignment.center,
+    child: Text(statusText, style: TextStyle(color: colorWhite, fontSize: 10, fontWeight: FontWeight.w400),),
+    decoration: BoxDecoration(
+      color: statusColor,
+      borderRadius: BorderRadius.circular(20),
+    ),
+    height: 20,
+    width: 60,
   );
 }
