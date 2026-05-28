@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:taskmanager/style/style.dart';
 
@@ -116,5 +117,28 @@ Future<List> TaskListRequest(status) async {
   }else{
     ErrorToast("Request Fail ! try again");
     return [];
+  }
+}
+
+Future<bool> TaskCreateRequest(FormValues) async {
+  var URL = Uri.parse("${BaseURL}/createTask");
+
+  String? token = await GetUserData("token");
+  var RequestHeaderWithToken = {
+    'Content-Type': 'application/json',
+    'token': '$token',
+  };
+  var PostBody = json.encode(FormValues);
+  var response = await http.post(URL, headers: RequestHeaderWithToken, body: PostBody);
+
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+
+  if(ResultCode==200 && ResultBody['status']=="success"){
+    SuccessToast("Task Created Successfully");
+    return true;
+  }else{
+    ErrorToast("Request Fail ! try again");
+    return false;
   }
 }

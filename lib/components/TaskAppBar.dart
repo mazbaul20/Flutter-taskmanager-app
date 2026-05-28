@@ -29,7 +29,9 @@ AppBar TaskAppBar(context,ProfileData){
     ),
     actions: [
       IconButton(
-          onPressed: (){},
+          onPressed: (){
+            Navigator.pushNamed(context, "/taskCreate");
+          },
           icon: Icon(Icons.add_circle_outline)),
       IconButton(
           onPressed: () async {
