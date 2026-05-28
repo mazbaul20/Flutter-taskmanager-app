@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../api/apiClient.dart';
 import '../style/style.dart';
 
-ListView TaskList(TaskItems) {
+ListView TaskList(TaskItems, DeleteItem) {
   return ListView.builder(
     itemCount: TaskItems.length,
     itemBuilder: (context, index) {
@@ -54,7 +55,9 @@ ListView TaskList(TaskItems) {
                           width: 50,
                           height: 30,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              await DeleteItem(TaskItems[index]['_id']);
+                            },
                             child: Icon(Icons.delete_outline, size: 16),
                             style: AppStatusButtonStyle(colorRed),
                           ),

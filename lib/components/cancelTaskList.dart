@@ -29,6 +29,29 @@ class _cancelTaskListState extends State<cancelTaskList> {
     });
   }
 
+  DeleteItem(id) async{
+    showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: Text("Delete !"),
+            content: Text("Do you want to delete Item?"),
+            actions: [
+              OutlinedButton(onPressed: () async {
+                Navigator.pop(context);
+                setState(() {isLoading=true;});
+                await TaskDeleteRequest(id);
+                await CallData();
+              }, child: Text("Yes")),
+              OutlinedButton(onPressed: (){
+                Navigator.pop(context);
+              }, child: Text("No"))
+            ],
+          );
+        }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return isLoading
@@ -37,7 +60,7 @@ class _cancelTaskListState extends State<cancelTaskList> {
             onRefresh: () async {
               await CallData();
             },
-            child: TaskList(taskList),
+            child: TaskList(taskList, DeleteItem),
           ));
   }
 }
