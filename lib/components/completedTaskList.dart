@@ -54,6 +54,13 @@ class _completedTaskListState extends State<completedTaskList> {
     );
   }
 
+  UpdateStatus(id) async {
+    setState(() {isLoading = true;});
+    await TaskUpdateRequest(id,Status);
+    await CallData();
+    setState(() {Status = "New";});
+  }
+
   StatusChange(id) async {
     showModalBottomSheet(
       context: context,
@@ -108,8 +115,9 @@ class _completedTaskListState extends State<completedTaskList> {
                   ),
                   Container(
                     child: ElevatedButton(
-                      onPressed: () {
-
+                      onPressed: () async {
+                        Navigator.pop(context);
+                        await UpdateStatus(id);
                       },
                       child: SuccessButtonChild("Confirm"),
                       style: AppButtonStyle(),
