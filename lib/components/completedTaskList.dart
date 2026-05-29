@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../api/apiClient.dart';
+import '../style/style.dart';
 import 'TaskList.dart';
 
 class completedTaskList extends StatefulWidget {
@@ -14,6 +15,7 @@ class completedTaskList extends StatefulWidget {
 class _completedTaskListState extends State<completedTaskList> {
   List taskList = [];
   bool isLoading = true;
+  String Status = "Completed";
 
   @override
   void initState() {
@@ -52,6 +54,76 @@ class _completedTaskListState extends State<completedTaskList> {
     );
   }
 
+  StatusChange(id) async {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return Container(
+              padding: EdgeInsets.all(30),
+              height: 360,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  RadioListTile(
+                    title: Text("New"),
+                    value: "New",
+                    groupValue: Status,
+                    onChanged: (value) {
+                      setState(() {
+                        Status = value.toString();
+                      });
+                    },
+                  ),
+                  RadioListTile(
+                    title: Text("Progress"),
+                    value: "Progress",
+                    groupValue: Status,
+                    onChanged: (value) {
+                      setState(() {
+                        Status = value.toString();
+                      });
+                    },
+                  ),
+                  RadioListTile(
+                    title: Text("Completed"),
+                    value: "Completed",
+                    groupValue: Status,
+                    onChanged: (value) {
+                      setState(() {
+                        Status = value.toString();
+                      });
+                    },
+                  ),
+                  RadioListTile(
+                    title: Text("Cancelled"),
+                    value: "Cancelled",
+                    groupValue: Status,
+                    onChanged: (value) {
+                      setState(() {
+                        Status = value.toString();
+                      });
+                    },
+                  ),
+                  Container(
+                    child: ElevatedButton(
+                      onPressed: () {
+
+                      },
+                      child: SuccessButtonChild("Confirm"),
+                      style: AppButtonStyle(),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return isLoading
@@ -60,7 +132,7 @@ class _completedTaskListState extends State<completedTaskList> {
             onRefresh: () async {
               await CallData();
             },
-            child: TaskList(taskList,DeleteItem),
+            child: TaskList(taskList,DeleteItem,StatusChange),
           ));
   }
 }
