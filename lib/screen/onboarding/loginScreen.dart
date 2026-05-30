@@ -14,6 +14,7 @@ class loginScreen extends StatefulWidget {
 class _loginScreenState extends State<loginScreen> {
   Map<String, String> FormValues = {"email":"","password":""};
   bool isLoading = false;
+  bool _isObscure = true;
 
   InputOnChange(MapKey, TextValue){
     setState(() {
@@ -67,7 +68,16 @@ class _loginScreenState extends State<loginScreen> {
                     },
                   ),
                   SizedBox(height: 20,),
-                  TextFormField(decoration: AppInputDecoration("Password"),
+                  TextFormField(
+                    obscureText: _isObscure,
+                    decoration: AppInputDecoration("Password").copyWith(
+                      suffixIcon: IconButton(onPressed: (){
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      }, icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility))
+                    ),
+
                     onChanged: (TextValue){
                       InputOnChange("password", TextValue);
                     },
